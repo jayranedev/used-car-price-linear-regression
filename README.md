@@ -7,12 +7,20 @@ A full-stack machine learning web application that estimates used car market val
 
 ## Live Demo
 
+- **Frontend Application**: [Frontend Demo](FRONTEND_VERCEL_URL)
+- **Backend API**: [Backend API](BACKEND_VERCEL_URL)
 - **Frontend Application**: [https://used-car-price-linear-regression.vercel.app](https://used-car-price-linear-regression.vercel.app)
 - **Backend API & Health Check**: [https://used-car-price-linear-regression.vercel.app/health](https://used-car-price-linear-regression.vercel.app/health)
 - **Prediction Endpoint**: `POST https://used-car-price-linear-regression.vercel.app/predict`
 
+> [!NOTE]
+> The links above use placeholders (`FRONTEND_VERCEL_URL` and `BACKEND_VERCEL_URL`). Replace these with your actual Vercel deployment URLs after deploying.
+
 ### API Documentation
 
+Once deployed, the interactive FastAPI OpenAPI documentation is available at:
+- **Swagger UI**: [Interactive API Docs](BACKEND_VERCEL_URL/docs)
+- **ReDoc**: [Alternative ReDoc](BACKEND_VERCEL_URL/redoc)
 The interactive FastAPI OpenAPI documentation is available at:
 - **Swagger UI**: [https://used-car-price-linear-regression.vercel.app/docs](https://used-car-price-linear-regression.vercel.app/docs)
 - **ReDoc**: [https://used-car-price-linear-regression.vercel.app/redoc](https://used-car-price-linear-regression.vercel.app/redoc)
