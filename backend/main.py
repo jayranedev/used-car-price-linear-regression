@@ -90,4 +90,6 @@ def predict(car: CarInput):
 
     return {
         "predicted_price": round(float(prediction), 2)
+        "predicted_price": round(float(prediction), 2),
+        "currency": "GBP"
     }
