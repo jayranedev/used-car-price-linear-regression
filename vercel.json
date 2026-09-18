@@ -1,36 +1,17 @@
 {
-  "services": {
-    "web": {
-      "root": "frontend/",
-      "framework": "vite"
-    },
-    "api": {
-      "root": "backend/",
-      "framework": "fastapi",
-      "entrypoint": "main:app"
-    }
-  },
   "buildCommand": "cd frontend && npm install && npm run build",
   "outputDirectory": "frontend/dist",
   "rewrites": [
     {
-      "source": "/api/(.*)",
-      "destination": { "service": "api" }
       "source": "/api/:path*",
       "destination": "/api/index.py"
     },
     {
       "source": "/predict",
-      "destination": { "service": "api" }
       "destination": "/api/index.py"
     },
     {
       "source": "/health",
-      "destination": { "service": "api" }
-    },
-    {
-      "source": "/(.*)",
-      "destination": { "service": "web" }
       "destination": "/api/index.py"
     }
   ]
