@@ -37,3 +37,4 @@ def health():
         "model_loaded": loaded,
         "error": err,
     }
+

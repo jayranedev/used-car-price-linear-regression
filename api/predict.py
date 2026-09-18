@@ -106,3 +106,4 @@ def run_prediction(car: CarInput):
 @app.post("/api/predict")
 def predict_endpoint(car: CarInput):
     return run_prediction(car)
+
