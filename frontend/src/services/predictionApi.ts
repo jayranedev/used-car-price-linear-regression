@@ -1,8 +1,10 @@
 import type { PredictionRequest, PredictionResponse } from '../types';
 
 const rawApiUrl = import.meta.env.VITE_API_URL;
-const API_BASE_URL = (
-  rawApiUrl && rawApiUrl.trim() !== ''
+const isLocalhost = Boolean(rawApiUrl && (rawApiUrl.includes('localhost') || rawApiUrl.includes('127.0.0.1')));
+
+export const API_BASE_URL = (
+  rawApiUrl && rawApiUrl.trim() !== '' && (!import.meta.env.PROD || !isLocalhost)
     ? rawApiUrl
     : (import.meta.env.PROD ? '' : 'http://127.0.0.1:8000')
 ).replace(/\/$/, '');
