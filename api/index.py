@@ -62,29 +62,23 @@ class CarInput(BaseModel):
 
 @app.get("/")
 @app.get("/api")
-@app.get("/api/index.py")
-def root():
-    return {
-        "message": "Used Car Price Prediction API",
-        "status": "running",
-        "model_loaded": model_loaded,
-    }
-
-
 @app.get("/health")
 @app.get("/api/health")
-@app.get("/api/index.py/health")
+@app.get("/api/index.py")
 def health():
     return {
         "status": "healthy" if model_loaded else "degraded",
         "model_loaded": model_loaded,
+        "message": "Used Car Price Prediction API",
         "error": load_error,
     }
 
 
+@app.post("/")
+@app.post("/api")
 @app.post("/predict")
 @app.post("/api/predict")
-@app.post("/api/index.py/predict")
+@app.post("/api/index.py")
 def predict(car: CarInput):
     if not model_loaded:
         raise HTTPException(
@@ -117,9 +111,9 @@ def predict(car: CarInput):
     ]
 
     # 2. OneHotEncode categorical features (drop='first')
-    make_cats = CATEGORIES[0][1:]  # Drops 'BMW'
-    fuel_cats = CATEGORIES[1][1:]  # Drops 'Diesel'
-    trans_cats = CATEGORIES[2][1:]  # Drops 'Automatic'
+    make_cats = CATEGORIES[0][1:]
+    fuel_cats = CATEGORIES[1][1:]
+    trans_cats = CATEGORIES[2][1:]
 
     encoded_make = [1.0 if resolved_make == cat else 0.0 for cat in make_cats]
     encoded_fuel = [1.0 if car.fuelType == cat else 0.0 for cat in fuel_cats]

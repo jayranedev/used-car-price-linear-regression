@@ -20,7 +20,7 @@ export class ApiError extends Error {
  * Sends vehicle features to the FastAPI ML backend and returns the predicted price in GBP.
  */
 export async function predictCarPrice(payload: PredictionRequest): Promise<PredictionResponse> {
-  const endpoint = `${API_BASE_URL}/predict`;
+  const endpoint = API_BASE_URL ? `${API_BASE_URL}/predict` : '/api';
 
   try {
     const controller = new AbortController();
@@ -78,7 +78,8 @@ export async function predictCarPrice(payload: PredictionRequest): Promise<Predi
  */
 export async function checkBackendHealth(): Promise<boolean> {
   try {
-    const response = await fetch(`${API_BASE_URL}/health`, {
+    const endpoint = API_BASE_URL ? `${API_BASE_URL}/health` : '/api';
+    const response = await fetch(endpoint, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     });
