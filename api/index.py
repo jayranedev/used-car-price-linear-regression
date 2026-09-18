@@ -25,8 +25,8 @@ app.add_middleware(
 
 def find_model_dir() -> Path:
     candidates = [
-        Path(__file__).resolve().parent.parent / "models",
         Path(__file__).resolve().parent / "models",
+        Path(__file__).resolve().parent.parent / "models",
         Path.cwd() / "models",
         Path.cwd() / "api" / "models",
         Path("/var/task/models"),
@@ -39,7 +39,8 @@ def find_model_dir() -> Path:
             and (p / "linear_model.pkl").exists()
         ):
             return p
-    return Path(__file__).resolve().parent.parent / "models"
+    # Fallback to current file parent
+    return Path(__file__).resolve().parent / "models"
 
 
 MODEL_DIR = find_model_dir()
@@ -138,6 +139,7 @@ def predict(car: CarInput):
         encoded_data = encoder.transform(categorical_data)
         scaled_data = scaler.transform(numerical_data)
     except ImportError:
+        # Fallback to direct arrays if pandas is omitted to reduce serverless package size
         cat_raw = [[resolved_make, car.fuelType, car.transmission]]
         num_raw = [
             [
