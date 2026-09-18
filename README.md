@@ -766,6 +766,35 @@ jupyter notebook notebooks/train.ipynb
 
 ---
 
+## Deployment to Vercel
+
+The project is pre-configured for seamless deployment to Vercel as a unified full-stack application (Vite React frontend + Python Serverless API for ML inference).
+
+### Option 1: 1-Click Git Integration (Recommended)
+
+1. Push your repository to GitHub (`https://github.com/jayranedev/used-car-price-linear-regression`).
+2. Go to [vercel.com/new](https://vercel.com/new) and import the repository.
+3. Keep default settings (Vercel automatically detects `vercel.json`, builds the frontend from `frontend/`, and configures `api/index.py` as a Python Serverless Function).
+4. Click **Deploy**.
+
+### Option 2: Deploy via Vercel CLI
+
+1. Authenticate with Vercel:
+   ```bash
+   vercel login
+   ```
+2. Deploy to production from the project root:
+   ```bash
+   vercel --prod
+   ```
+
+### Serverless Architecture on Vercel
+- **Frontend**: Static single-page application built via Vite and served globally across Vercel's Edge CDN.
+- **Backend API**: Hosted as a serverless Python function (`api/index.py`) using FastAPI.
+- **Model Storage**: Pre-trained model artifacts (`encoder.pkl`, `scaler.pkl`, `linear_model.pkl`) are bundled directly within `api/models/` for fast cold starts and zero external storage dependencies.
+
+---
+
 ## Key Learnings
 
 This project demonstrates several core machine learning engineering practices:
